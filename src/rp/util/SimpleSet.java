@@ -15,7 +15,7 @@ import java.util.Iterator;
  */
 public class SimpleSet<V> implements Collection<V> {
 
-  private final ArrayList<V> m_inner;
+  protected final ArrayList<V> m_inner;
 
   public SimpleSet() {
     m_inner = new ArrayList<V>();
@@ -26,7 +26,7 @@ public class SimpleSet<V> implements Collection<V> {
   }
 
   public boolean isEmpty() {
-    return m_inner.size() != 0;
+    return m_inner.size() == 0;
   }
 
   public boolean contains(Object o) {
@@ -80,4 +80,9 @@ public class SimpleSet<V> implements Collection<V> {
   public void clear() {
     m_inner.clear();
   }
+  
+  public V removeFirst(){
+	  return m_inner.remove(0);
+  }
+  
 }

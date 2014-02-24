@@ -1,6 +1,7 @@
 package rp13.search.problem.puzzle;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -31,7 +32,7 @@ public class EightPuzzle {
 		private PuzzleMove(int _move) {
 			m_move = _move;
 		}
-
+		
 		/**
 		 * Cached result of values such that copy isn't done every time.
 		 */
@@ -57,7 +58,7 @@ public class EightPuzzle {
 		}
 
 	}
-
+	
 	/**
 	 * The pieces in the puzzle, represented as an array.
 	 */

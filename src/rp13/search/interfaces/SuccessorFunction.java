@@ -25,7 +25,6 @@ public interface SuccessorFunction<ActionT, StateT> {
 	 * @param _state
 	 * @param _successors
 	 */
-	public void getSuccessors(StateT _state,
+	public void getSuccessors(ActionStatePair<ActionT,StateT> cause, 
 			List<ActionStatePair<ActionT, StateT>> _successors);
-
 }

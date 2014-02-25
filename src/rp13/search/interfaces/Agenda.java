@@ -37,6 +37,12 @@ public interface Agenda<ItemT> extends Iterable<ItemT> {
 	 * @param _item
 	 * @return
 	 */
-	boolean contains(ItemT _item);
+	boolean doesContain(ItemT _item);
 
+	/**
+	 * Returns the agenda in a human readable format
+	 * @return
+	 */
+	String toString();
+	
 }

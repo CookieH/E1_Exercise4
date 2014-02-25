@@ -13,6 +13,7 @@ public class ActionStatePair<ActionT, StateT> {
 
 	private final ActionT m_action;
 	private final StateT m_state;
+	private final ActionStatePair<ActionT,StateT> m_parent;
 
 	/**
 	 * Construct the pair from input values.
@@ -20,9 +21,10 @@ public class ActionStatePair<ActionT, StateT> {
 	 * @param _action
 	 * @param _state
 	 */
-	public ActionStatePair(ActionT _action, StateT _state) {
+	public ActionStatePair(ActionT _action, StateT _state, ActionStatePair<ActionT,StateT> _parent) {
 		m_action = _action;
 		m_state = _state;
+		m_parent = _parent;
 	}
 
 	/**
@@ -53,5 +55,9 @@ public class ActionStatePair<ActionT, StateT> {
 		}
 
 		return sb.toString();
+	}
+	
+	public ActionStatePair<ActionT,StateT> getParent(){
+		return m_parent;
 	}
 }

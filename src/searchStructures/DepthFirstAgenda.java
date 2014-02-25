@@ -1,6 +1,7 @@
 package searchStructures;
 import java.util.Iterator;
 
+import rp.util.SimpleSet;
 import rp13.search.interfaces.Agenda;
 
 /**
@@ -8,7 +9,7 @@ import rp13.search.interfaces.Agenda;
  * @author lfg332
  *
  */
-public class DepthFirstAgenda  implements Agenda {
+public class DepthFirstAgenda<Node> extends SimpleSet implements Agenda {
 
 	@Override
 	public Iterator iterator() {
@@ -36,6 +37,12 @@ public class DepthFirstAgenda  implements Agenda {
 
 	@Override
 	public boolean contains(Object _item) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean doesContain(Object _item) {
 		// TODO Auto-generated method stub
 		return false;
 	}

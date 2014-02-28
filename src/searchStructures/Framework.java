@@ -6,6 +6,7 @@ import java.util.List;
 import rp.util.SimpleSet;
 import rp13.search.interfaces.Agenda;
 import rp13.search.interfaces.GoalTest;
+import rp13.search.interfaces.Heuristic;
 import rp13.search.interfaces.SuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle;
 import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
@@ -14,7 +15,7 @@ import rp13.search.util.ActionStatePair;
 import rp13.search.util.EqualityGoalTest;
 import rp13.search.util.SearchNode;
 
-public class Framework<ActionT, StateT> {
+public class Framework<ActionT, StateT extends Heuristic> {
 
 	private Agenda<SearchNode<ActionT, StateT>> agenda;
 	private GoalTest<StateT> gtest;
@@ -36,6 +37,10 @@ public class Framework<ActionT, StateT> {
 	public List<ActionT> searchLoop() {
 
 		System.out.println(initial.getActionStatePair());
+	
+		if (isGoal(initial)) {
+			return makeMoveList(initial);
+		}
 		closed.add(initial.getActionStatePair().getState());
 		// Initialise with the first function
 		sfunc.getSuccessors(initial, successors);
@@ -50,19 +55,8 @@ public class Framework<ActionT, StateT> {
 		while (!agenda.isEmpty()) {
 			SearchNode<ActionT, StateT> testNode = agenda.pop();
 
-			if (gtest.isGoal(testNode.getActionStatePair().getState())) {
-				System.out.println("Found a solution! The path is:");
-
-				List<ActionT> resultList = new ArrayList<ActionT>();
-
-				while (testNode.getParent() != null) {
-					resultList
-							.add(0, testNode.getActionStatePair().getAction());
-					testNode = testNode.getParent();
-				}
-
-				System.out.println(resultList);
-				return resultList;
+			if (isGoal(testNode)) {
+				return makeMoveList(testNode);
 			}
 
 			else {
@@ -80,6 +74,29 @@ public class Framework<ActionT, StateT> {
 		}
 		return null;
 	}
+
+	public boolean isGoal(SearchNode<ActionT,StateT> testNode){
+		if(gtest.isGoal(testNode.getActionStatePair().getState())){
+			return true;
+		}
+			else return false;
+	}
+	
+	public List<ActionT> makeMoveList(SearchNode<ActionT,StateT> finishedNode){
+		System.out.println("Found a solution! The path is:");
+
+		List<ActionT> resultList = new ArrayList<ActionT>();
+
+		while (finishedNode.getParent() != null) {
+			resultList
+					.add(0, finishedNode.getActionStatePair().getAction());
+			finishedNode = finishedNode.getParent();
+		}
+
+		System.out.println(resultList);
+		return resultList;
+	}
+	
 
 	/**
 	 * @param args

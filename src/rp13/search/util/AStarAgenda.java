@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import rp13.search.interfaces.Heuristic;
 import rp13.search.interfaces.SortedAgenda;
 
-public class AStarAgenda<ActionT,StateT extends Comparable<StateT>> implements SortedAgenda<ComparableSearchNode<ActionT,StateT>> {
+public class AStarAgenda<ActionT,StateT extends Heuristic> implements SortedAgenda<ComparableSearchNode<ActionT,StateT>> {
 
 private ArrayList<ComparableSearchNode<ActionT,StateT>> inner = new ArrayList<ComparableSearchNode<ActionT,StateT>>();
+
+
+public AStarAgenda(){
+	
+}
 
 /**
  * Add to the list, this method does not sort. That is the job of the sort method down the page.
@@ -48,6 +54,18 @@ public Iterator<ComparableSearchNode<ActionT, StateT>> iterator() {
 @Override
 public void sort() {
 	Collections.sort(inner);
+}
+
+@Override
+public String toString()
+{
+	String result = "";
+	for (ComparableSearchNode<ActionT,StateT> pair : inner) {
+		 result = result + " " + pair.getAStar();
+	}
+	
+	return result;
+	
 }
 
 	

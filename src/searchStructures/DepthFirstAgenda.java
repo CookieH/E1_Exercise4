@@ -3,48 +3,36 @@ import java.util.Iterator;
 
 import rp.util.SimpleSet;
 import rp13.search.interfaces.Agenda;
+import rp13.search.util.SearchNode;
 //TODO fix this class!!!
 /**
- * Uses stack for agenda, implments depth first
+ * Uses stack for agenda, implements depth first
  * @author lfg332
  *
  */
-public class DepthFirstAgenda<Node> extends SimpleSet implements Agenda {
+public class DepthFirstAgenda<ActionT,StateT> extends SimpleSet<SearchNode<ActionT,StateT>> implements Agenda<SearchNode<ActionT,StateT>> {
 
+	/**
+	 * Add an item to the agenda
+	 */
 	@Override
-	public Iterator iterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public void push(SearchNode<ActionT, StateT> _item) {
+		add(_item);
+	}
+
+	/**
+	 * Remove the last added item from the agenda
+	 */
+	@Override
+	public SearchNode<ActionT, StateT> pop() {
+		return removeLast();
 	}
 
 	@Override
-	public void push(Object _item) {
-		// TODO Auto-generated method stub
-		
+	public boolean doesContain(SearchNode<ActionT, StateT> _item) {
+		return super.contains(_item);
 	}
 
-	@Override
-	public Object pop() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean contains(Object _item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean doesContain(Object _item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

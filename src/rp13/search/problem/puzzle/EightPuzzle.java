@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import rp13.search.interfaces.Heuristic;
+
 /**
  * 
  * A class to represent a 3x3 sliding tile puzzle, such as:
@@ -16,8 +18,12 @@ import java.util.Random;
  * @author Nick Hawes
  * 
  */
-public class EightPuzzle {
+public class EightPuzzle implements Heuristic {
 
+	private int misplaced = 0;
+	private final static int  costToMove = 1; 
+
+	
 	/**
 	 * Explicit enumeration of moves the blank tile can take.
 	 * 
@@ -243,5 +249,29 @@ public class EightPuzzle {
 		}
 
 	}
+	
+	public void calculateMisplaced(){
+		int misplacedCount = 0;
+		for(int i=0;i<m_board.length;i++)
+		{
+			if (m_board[i] != (i+1))
+			{
+				misplacedCount++;
+			}
+		}
+		misplaced = misplacedCount++;
+	}
+	
+	@Override
+	public int getHeuristicValue() {
+		calculateMisplaced();
+		return misplaced;
+	}
+	
+	public int getCostToMove()
+	{
+		return costToMove;
+	}
+
 
 }

@@ -1,18 +1,44 @@
 package rp13.search.util;
 
-public class ComparableSearchNode<ActionT,StateT extends Comparable<StateT>> extends SearchNode<ActionT,StateT> implements Comparable<ComparableSearchNode<ActionT,StateT >> {
+import rp13.search.interfaces.Heuristic;
 
-	public ComparableSearchNode(ActionStatePair<ActionT,StateT> pair,ActionStatePair<ActionT,StateT> parent){
+public class ComparableSearchNode<ActionT,StateT extends Heuristic> extends SearchNode<ActionT,StateT> implements Comparable<ComparableSearchNode<ActionT,StateT >> {
+
+	private int costToNode;
+	private int aStarValue;
+	private ComparableSearchNode<ActionT,StateT> parent;
+	
+	public ComparableSearchNode(ActionStatePair<ActionT,StateT> pair,ComparableSearchNode<ActionT,StateT> parent, int cost){
 		super(pair,parent);
+		this.costToNode = cost;
+		this.parent = parent;
 	}
 
 
 
 	@Override
 	public int compareTo(ComparableSearchNode<ActionT, StateT> o) {
-		// TODO Auto-generated method stub
-		return o.getActionStatePair().getState().compareTo(getActionStatePair().getState());
+		return this.getAStar() - o.getAStar();
 	}
+
+
+	public int getAStar() {
+		return getActionStatePair().getState().getHeuristicValue() + getCostToNode();
+	}
+	
+	public int getCostToNode(){
+		return costToNode;
+	}
+	
+	public void setCostToNode(int cost){
+		costToNode = cost;
+	}
+	
+	@Override
+	public ComparableSearchNode<ActionT,StateT> getParent(){
+		return parent;
+	}
+
 	
 	
 }

@@ -9,8 +9,9 @@ import rp13.search.interfaces.GoalTest;
 import rp13.search.interfaces.Heuristic;
 import rp13.search.interfaces.SortedAgenda;
 import rp13.search.interfaces.SuccessorFunction;
-import rp13.search.problem.puzzle.EightPuzzle;
-import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
+import rp13.search.problem.puzzle.GridGoalTest;
+import rp13.search.problem.puzzle.GridLocation;
+import rp13.search.problem.puzzle.GridPuzzleSuccessorFunction;
 import rp13.search.util.AStarAgenda;
 import rp13.search.util.ActionStatePair;
 import rp13.search.util.ComparableSearchNode;
@@ -36,14 +37,12 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 		this.initial = initial;
 	}
 
-	public List<ActionT> searchLoop() {
-		System.out.println(initial.getActionStatePair().getState());
+		public List<ActionT> searchLoop() {		System.out.println(initial.getActionStatePair().getState());
 		if (isGoal(initial)) {
 			return makeMoveList(initial);
 		}
 
 		addSuccessorsToAgenda(initial);
-
 		while (!agenda.isEmpty()) {
 			ComparableSearchNode<ActionT, StateT> testNode = agenda.pop();
 			if (isGoal(testNode)) {
@@ -58,11 +57,14 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 	private void addSuccessorsToAgenda(
 			ComparableSearchNode<ActionT, StateT> parentNode) {
 		sfunc.getComparableSuccessors(parentNode, successors);
-
+		
 		for (ComparableSearchNode<ActionT, StateT> item : successors) {
+			/*
 			item.setCostToNode(item.getParent().getCostToNode()
 					+ item.getActionStatePair().getState().getCostToMove());
+			*/
 			agenda.push(item);
+			
 		}
 		successors.clear();
 		agenda.sort();
@@ -92,19 +94,19 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 
 	public static void main(String [] args ){
 
-		ComparableSearchNode<EightPuzzle.PuzzleMove, EightPuzzle> initial = new ComparableSearchNode<EightPuzzle.PuzzleMove, EightPuzzle>(
-				new ActionStatePair<EightPuzzle.PuzzleMove, EightPuzzle>(null,
-						EightPuzzle.randomEightPuzzle()), null,0);
+		ComparableSearchNode<GridLocation.GridMove, GridLocation> initial = new ComparableSearchNode<GridLocation.GridMove, GridLocation>(
+				new ActionStatePair<GridLocation.GridMove, GridLocation>(null,
+						new GridLocation(1,1)), null,0);
 		
-		SortedAgenda<ComparableSearchNode<EightPuzzle.PuzzleMove,EightPuzzle>> agenda =
-				new AStarAgenda<EightPuzzle.PuzzleMove,EightPuzzle>();
+		SortedAgenda<ComparableSearchNode<GridLocation.GridMove,GridLocation>> agenda =
+				new AStarAgenda<GridLocation.GridMove,GridLocation>();
 		
-		SuccessorFunction<EightPuzzle.PuzzleMove,EightPuzzle> sfunc = new EightPuzzleSuccessorFunction();
+		SuccessorFunction<GridLocation.GridMove,GridLocation> sfunc = new GridPuzzleSuccessorFunction();
 		
-		GoalTest<EightPuzzle> gtest = new EqualityGoalTest<EightPuzzle>(EightPuzzle.orderedEightPuzzle());
+		GoalTest<GridLocation> gtest = new GridGoalTest();
 		
-		AStarFrameWork<EightPuzzle.PuzzleMove,EightPuzzle> frame =
-				new AStarFrameWork<EightPuzzle.PuzzleMove,EightPuzzle>(agenda,gtest,sfunc,initial); 
+		AStarFrameWork<GridLocation.GridMove,GridLocation> frame =
+				new AStarFrameWork<GridLocation.GridMove,GridLocation>(agenda,gtest,sfunc,initial); 
 	
 		frame.searchLoop();
 	}

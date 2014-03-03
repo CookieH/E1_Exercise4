@@ -6,6 +6,8 @@ package rp13.search.interfaces;
 import java.util.List;
 
 import rp13.search.util.ActionStatePair;
+import rp13.search.util.ComparableSearchNode;
+import rp13.search.util.SearchNode;
 
 /**
  * 
@@ -15,7 +17,7 @@ import rp13.search.util.ActionStatePair;
  * @author Nick Hawes
  * 
  */
-public interface SuccessorFunction<ActionT, StateT> {
+public interface SuccessorFunction<ActionT, StateT extends Heuristic> {
 
 	/**
 	 * Adds each successor of the given state to the end of the _successors
@@ -25,6 +27,9 @@ public interface SuccessorFunction<ActionT, StateT> {
 	 * @param _state
 	 * @param _successors
 	 */
-	public void getSuccessors(ActionStatePair<ActionT,StateT> cause, 
-			List<ActionStatePair<ActionT, StateT>> _successors);
+	public void getSuccessors(SearchNode<ActionT,StateT> cause, 
+			List<SearchNode<ActionT, StateT>> _successors);
+	
+	public void getComparableSuccessors(ComparableSearchNode<ActionT,StateT> cause, 
+			List<ComparableSearchNode<ActionT, StateT>> _successors);
 }

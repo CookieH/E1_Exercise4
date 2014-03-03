@@ -85,4 +85,8 @@ public class SimpleSet<V> implements Collection<V> {
 	  return m_inner.remove(0);
   }
   
+  public V removeLast(){
+	  return m_inner.remove(m_inner.size()-1);
+  }
+  
 }

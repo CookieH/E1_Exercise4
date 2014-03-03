@@ -6,11 +6,12 @@ import rp13.search.interfaces.Agenda;
 import rp13.search.problem.puzzle.EightPuzzle;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
 import rp13.search.util.ActionStatePair;
+import rp13.search.util.SearchNode;
 
 
-public class BreadthFirstAgenda <ActionT,StateT>
-extends SimpleSet<ActionStatePair<ActionT,StateT>>
-implements Agenda<ActionStatePair<ActionT,StateT>>  
+public class BreadthFirstAgenda<ActionT,StateT>
+extends SimpleSet<SearchNode<ActionT,StateT>>
+implements Agenda<SearchNode<ActionT,StateT>>  
 {
 
 	public BreadthFirstAgenda(){
@@ -18,17 +19,17 @@ implements Agenda<ActionStatePair<ActionT,StateT>>
 	}
 	
 	
-	public void push(ActionStatePair<ActionT, StateT> _item) {
+	public void push(SearchNode<ActionT, StateT> _item) {
 		super.add(_item);
 	}
 
 	
-	public ActionStatePair<ActionT, StateT> pop() {
+	public SearchNode<ActionT, StateT> pop() {
 		return super.removeFirst();
 	}
 
 	
-	public boolean doesContain(ActionStatePair<ActionT, StateT> _item) {
+	public boolean doesContain(SearchNode<ActionT, StateT> _item) {
 		return super.contains(_item);
 	}
 	
@@ -39,7 +40,7 @@ implements Agenda<ActionStatePair<ActionT,StateT>>
 	public String toString(){
 		
 		String result = "";
-		for (ActionStatePair<ActionT,StateT> pair : m_inner) {
+		for (SearchNode<ActionT,StateT> pair : m_inner) {
 			 result = result + " " + pair.toString();
 		}
 		

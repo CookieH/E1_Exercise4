@@ -34,6 +34,10 @@ public class GridLocation implements Heuristic {
 		private GridMove(int _move) {
 			move = _move;
 		}
+		
+		public int getValue(){
+			return move;
+		}
 	}
 
 	public GridLocation(int x, int y) {

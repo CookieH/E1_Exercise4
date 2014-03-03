@@ -11,9 +11,10 @@ public class WordPuzzleSuccessorFunction implements
 			List<ActionStatePair<IntPair, WordPuzzle>> _successors) {
 
 		WordPuzzle puzz = (WordPuzzle)cause.getState();
+		String curr = puzz.getString();
 		for(int i=0; i<puzz.getMoves().size(); i++)
 		{
-			WordPuzzle successor = (WordPuzzle)cause.getState();
+			WordPuzzle successor = new WordPuzzle(curr);
 			successor.makeMove(puzz.getMoves().get(i));
 			_successors.add(new ActionStatePair<IntPair, WordPuzzle>(puzz.getMoves().get(i), successor, cause));
 		}

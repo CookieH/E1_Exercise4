@@ -11,7 +11,7 @@ import java.util.Random;
 public class WordPuzzle {
 	
 	protected String str;
-	private Random generator;
+	private static Random generator;
 	
 	private ArrayList<IntPair> moves;
 	
@@ -23,6 +23,7 @@ public class WordPuzzle {
 	public WordPuzzle(String str)
 	{
 			this.str = str;
+			moves = new ArrayList<IntPair>();
 			createMoves();
 	}
 	
@@ -61,7 +62,6 @@ public class WordPuzzle {
 	 */
 	public String jumbleString(String it)
 	{
-		this.generator = new Random();
 		this.str = jumble(it);
 		return str;
 	}
@@ -71,21 +71,22 @@ public class WordPuzzle {
 	 * @param puzzleStr the goal string
 	 * @return the jumbled string
 	 */
-	public String jumble(String puzzleStr)
+	public static String jumble(String puzzleStr)
 	{
 		String puzzleJumbled = puzzleStr;
+		generator = new Random();
 		
 		for(int i=0; i<20; i++)
 		{
-			int a = generator.nextInt(puzzleStr.length());
-			int b = generator.nextInt(puzzleStr.length());
+			int a = generator.nextInt(puzzleJumbled.length());
+			int b = generator.nextInt(puzzleJumbled.length());
 			/*
 			 * above - creates two random numbers that are the indexes of the characters
 			 * to be swapped
 			 * below - calls the swap method with the two indexes and string
 			 */
 			puzzleJumbled = swap(a, b, puzzleJumbled);
-		}
+		}		
 		
 		return puzzleJumbled;
 	}
@@ -98,24 +99,31 @@ public class WordPuzzle {
 		return "Current: " + str;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		WordPuzzle that = (WordPuzzle) obj;
+		return str.compareTo(that.getString()) == 0;
+	}
+	
 	/**
 	 * makes the move on the jumbled string
 	 * @param Action the pair of indexes to swap
 	 * @return the jumbled string
 	 */
-	public String makeMove(IntPair Action)
+	public void makeMove(IntPair Action)
 	{
-		return swap(Action.x, Action.y, str);
+		str = swap(Action.getX(), Action.getY(), str);
+		
 	}
 	
 	/**
 	 * uses a stringBuilder to swap the two characters around
 	 * @param i the first char to be swapped
 	 * @param j the second char to be swapped
-	 * @param swap the string for the swap to be performed on
+	 * @param swap the string for the swap EightPuzzleto be performed on
 	 * @return the string with the swap performed
 	 */
-	public String swap(int i, int j, String swap)
+	public static String swap(int i, int j, String swap)
 	{
 		StringBuilder swapBuilder = new StringBuilder(swap);//creates a string builder
 															// for easy access to chars
@@ -134,7 +142,8 @@ public class WordPuzzle {
 	 */
 	public boolean isPossibleMove(IntPair Action)
 	{
-		return Action.x < str.length() && Action.y < str.length();
+		return Action.getX() < str.length() && Action.getY() < str.length();
 	}
 	
 }
+

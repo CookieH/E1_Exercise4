@@ -1,4 +1,4 @@
-package rp13.search.util;
+package searchStructures;
 
 import java.util.ArrayList;
 import java.util.Iterator;

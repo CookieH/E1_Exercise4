@@ -1,5 +1,10 @@
 package demos;
 
+import gridPuzzle.GridGoalTest;
+import gridPuzzle.GridLocation;
+import gridPuzzle.GridPuzzleSuccessorFunction;
+import gridPuzzle.GridLocation.GridMove;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,20 +12,15 @@ import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.robotics.navigation.DifferentialPilot;
-
 import robotFiles.Junction;
 import robotFiles.TakeTurn;
 import rp13.search.interfaces.GoalTest;
 import rp13.search.interfaces.SortedAgenda;
 import rp13.search.interfaces.SuccessorFunction;
-import rp13.search.problem.puzzle.GridGoalTest;
-import rp13.search.problem.puzzle.GridLocation;
-import rp13.search.problem.puzzle.GridPuzzleSuccessorFunction;
-import rp13.search.problem.puzzle.GridLocation.GridMove;
-import rp13.search.util.AStarAgenda;
 import rp13.search.util.ActionStatePair;
-import rp13.search.util.ComparableSearchNode;
+import searchStructures.AStarAgenda;
 import searchStructures.AStarFrameWork;
+import searchStructures.ComparableSearchNode;
 
 public class GridDemo {
 

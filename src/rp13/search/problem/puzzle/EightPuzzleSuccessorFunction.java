@@ -6,8 +6,8 @@ import java.util.List;
 import rp13.search.interfaces.SuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
 import rp13.search.util.ActionStatePair;
-import rp13.search.util.ComparableSearchNode;
-import rp13.search.util.SearchNode;
+import searchStructures.ComparableSearchNode;
+import searchStructures.SearchNode;
 
 /**
  * An example eight-puzzle successor function.

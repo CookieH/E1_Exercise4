@@ -1,5 +1,9 @@
 package searchStructures;
 
+import gridPuzzle.GridGoalTest;
+import gridPuzzle.GridLocation;
+import gridPuzzle.GridPuzzleSuccessorFunction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,14 +13,8 @@ import rp13.search.interfaces.GoalTest;
 import rp13.search.interfaces.Heuristic;
 import rp13.search.interfaces.SortedAgenda;
 import rp13.search.interfaces.SuccessorFunction;
-import rp13.search.problem.puzzle.GridGoalTest;
-import rp13.search.problem.puzzle.GridLocation;
-import rp13.search.problem.puzzle.GridPuzzleSuccessorFunction;
-import rp13.search.util.AStarAgenda;
 import rp13.search.util.ActionStatePair;
-import rp13.search.util.ComparableSearchNode;
 import rp13.search.util.EqualityGoalTest;
-import rp13.search.util.SearchNode;
 
 public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 

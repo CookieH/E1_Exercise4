@@ -1,4 +1,4 @@
-package rp13.search.problem.puzzle;
+package gridPuzzle;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,6 @@
-package rp13.search.problem.puzzle;
+package gridPuzzle;
 
+@Deprecated 
 public class IntPair {
 
 	private final int x;

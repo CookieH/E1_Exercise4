@@ -1,4 +1,6 @@
-package rp13.search.util;
+package searchStructures;
+
+import rp13.search.util.ActionStatePair;
 
 public class SearchNode<ActionT,StateT>  {
 

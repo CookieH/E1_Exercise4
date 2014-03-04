@@ -1,4 +1,4 @@
-package rp13.search.problem.puzzle;
+package gridPuzzle;
 
 public class Coordinate {
 

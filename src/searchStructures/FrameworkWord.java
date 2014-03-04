@@ -1,5 +1,7 @@
 package searchStructures;
 
+import gridPuzzle.IntPair;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +12,10 @@ import rp13.search.interfaces.SuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle;
 import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
-import rp13.search.problem.puzzle.IntPair;
-import rp13.search.problem.puzzle.WordPuzzle;
-import rp13.search.problem.puzzle.WordPuzzleSuccessorFunction;
 import rp13.search.util.ActionStatePair;
 import rp13.search.util.EqualityGoalTest;
+import wordPuzzle.WordPuzzle;
+import wordPuzzle.WordPuzzleSuccessorFunction;
 
 public class FrameworkWord<ActionT, StateT> {
 

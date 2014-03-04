@@ -1,6 +1,9 @@
-package rp13.search.problem.puzzle;
+package wordPuzzle;
+
+import gridPuzzle.IntPair;
 
 import java.util.List;
+
 import rp13.search.interfaces.SuccessorFunction;
 import rp13.search.util.ActionStatePair;
 

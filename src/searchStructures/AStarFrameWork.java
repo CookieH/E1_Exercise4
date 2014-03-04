@@ -37,7 +37,8 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 		this.initial = initial;
 	}
 
-		public List<ActionT> searchLoop() {		System.out.println(initial.getActionStatePair().getState());
+	public List<ActionT> searchLoop() {
+		System.out.println(initial.getActionStatePair().getState());
 		if (isGoal(initial)) {
 			return makeMoveList(initial);
 		}
@@ -57,22 +58,21 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 	private void addSuccessorsToAgenda(
 			ComparableSearchNode<ActionT, StateT> parentNode) {
 		sfunc.getComparableSuccessors(parentNode, successors);
-		
+
 		for (ComparableSearchNode<ActionT, StateT> item : successors) {
 			/*
-			item.setCostToNode(item.getParent().getCostToNode()
-					+ item.getActionStatePair().getState().getCostToMove());
-			*/
+			 * item.setCostToNode(item.getParent().getCostToNode() +
+			 * item.getActionStatePair().getState().getCostToMove());
+			 */
 			agenda.push(item);
-			
+
 		}
 		successors.clear();
 		agenda.sort();
-		System.out.println(agenda.toString());
 	}
 
 	private List<ActionT> makeMoveList(SearchNode<ActionT, StateT> finishedNode) {
-		System.out.println("Found a solution! The path is:");
+		//System.out.println("Found a solution! The path is:");
 
 		List<ActionT> resultList = new ArrayList<ActionT>();
 
@@ -81,7 +81,7 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 			finishedNode = finishedNode.getParent();
 		}
 
-		System.out.println(resultList);
+		//System.out.println(resultList + "Using framework notation!");
 		return resultList;
 	}
 
@@ -92,23 +92,27 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 			return false;
 	}
 
-	public static void main(String [] args ){
+	public static void main(String[] args) {
 
-		ComparableSearchNode<GridLocation.GridMove, GridLocation> initial = new ComparableSearchNode<GridLocation.GridMove, GridLocation>(
-				new ActionStatePair<GridLocation.GridMove, GridLocation>(null,
-						new GridLocation(1,1)), null,0);
-		
-		SortedAgenda<ComparableSearchNode<GridLocation.GridMove,GridLocation>> agenda =
-				new AStarAgenda<GridLocation.GridMove,GridLocation>();
-		
-		SuccessorFunction<GridLocation.GridMove,GridLocation> sfunc = new GridPuzzleSuccessorFunction();
-		
-		GoalTest<GridLocation> gtest = new GridGoalTest();
-		
-		AStarFrameWork<GridLocation.GridMove,GridLocation> frame =
-				new AStarFrameWork<GridLocation.GridMove,GridLocation>(agenda,gtest,sfunc,initial); 
-	
-		frame.searchLoop();
+		// ComparableSearchNode<GridLocation.GridMove, GridLocation> initial =
+		// new ComparableSearchNode<GridLocation.GridMove, GridLocation>(
+		// new ActionStatePair<GridLocation.GridMove, GridLocation>(null,
+		// new GridLocation(1,1)), null,0);
+		//
+		// SortedAgenda<ComparableSearchNode<GridLocation.GridMove,GridLocation>>
+		// agenda =
+		// new AStarAgenda<GridLocation.GridMove,GridLocation>();
+		//
+		// SuccessorFunction<GridLocation.GridMove,GridLocation> sfunc = new
+		// GridPuzzleSuccessorFunction();
+		//
+		// GoalTest<GridLocation> gtest = new GridGoalTest();
+		//
+		// AStarFrameWork<GridLocation.GridMove,GridLocation> frame =
+		// new
+		// AStarFrameWork<GridLocation.GridMove,GridLocation>(agenda,gtest,sfunc,initial);
+		//
+		// frame.searchLoop();
 	}
 
 }

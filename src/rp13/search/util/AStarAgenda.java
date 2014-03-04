@@ -1,9 +1,9 @@
 package rp13.search.util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
+import rp.util.Collections;
 import rp13.search.interfaces.Heuristic;
 import rp13.search.interfaces.SortedAgenda;
 

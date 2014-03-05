@@ -1,4 +1,6 @@
+package wordPuzzle;
 
+ 
 
 /**
  * a simple data structure class to hold a pair of integers to be used as actions
@@ -15,7 +17,7 @@ public class IntPair {
 	 * @param x the first integer
 	 * @param y the second integer
 	 */
-	IntPair(int x, int y)
+	public IntPair(int x, int y)
 	{
 		this.x=x;
 		this.y=y;

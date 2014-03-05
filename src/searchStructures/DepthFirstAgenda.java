@@ -27,6 +27,12 @@ public class DepthFirstAgenda<ActionT,StateT> extends SimpleSet<SearchNode<Actio
 		return removeLast();
 	}
 
+	/**
+	 * Checked whether an item is in the agenda.
+	 * 
+	 * @param _item The item being checked
+	 * @return Whether or not the item it in the agenda
+	 */
 	@Override
 	public boolean doesContain(SearchNode<ActionT, StateT> _item) {
 		return super.contains(_item);

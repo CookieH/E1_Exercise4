@@ -14,6 +14,21 @@ import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
 import rp13.search.util.ActionStatePair;
 import rp13.search.util.EqualityGoalTest;
 
+/**
+ * Class that allows searching using uninformed search methods. Uses generics to
+ * make the application of the framework more flexible. Works using the
+ * principle of agendas.
+ * 
+ * @author david
+ * 
+ * @param <ActionT>
+ *            An action -> type should represent something which transform a
+ *            state to another state
+ * @param <StateT>
+ *            The way that the nodes are represented at a given point. Their
+ *            state.
+ * 
+ */
 public class Framework<ActionT, StateT extends Heuristic> {
 
 	private Agenda<SearchNode<ActionT, StateT>> agenda;
@@ -23,6 +38,22 @@ public class Framework<ActionT, StateT extends Heuristic> {
 	private List<StateT> closed = new ArrayList<StateT>();
 	private final SearchNode<ActionT, StateT> initial;
 
+	/**
+	 * Creates a new search framework given the objects in the parameters
+	 * 
+	 * @param agenda
+	 *            The agenda which holds the search nodes that need to be
+	 *            explored
+	 * @param gtest
+	 *            The goaltest function which checks wheether a state is the
+	 *            goal or not
+	 * @param sfunc
+	 *            Successor funtion that generates all the possible successors
+	 *            for a state.
+	 * 
+	 * @param initial
+	 *            The starting position for the search
+	 */
 	public Framework(Agenda<SearchNode<ActionT, StateT>> agenda,
 			GoalTest<StateT> gtest, SuccessorFunction<ActionT, StateT> sfunc,
 			SearchNode<ActionT, StateT> initial) {
@@ -33,10 +64,20 @@ public class Framework<ActionT, StateT extends Heuristic> {
 		this.initial = initial;
 	}
 
+	/**
+	 * The main search loop, executes a search based on the fields its has.
+	 * Works off of an agenda, pulling the next available item and putting its
+	 * successors into the agenda if they are not already present according to
+	 * the rules of the agenda. This is repeated until the agenda is exhausted
+	 * or a goal is found.
+	 * 
+	 * @return If a goal is found a list of actions that move from the initial
+	 *         state to the goal state
+	 */
 	public List<ActionT> searchLoop() {
 
 		System.out.println(initial.getActionStatePair());
-	
+
 		if (isGoal(initial)) {
 			return makeMoveList(initial);
 		}
@@ -74,28 +115,46 @@ public class Framework<ActionT, StateT extends Heuristic> {
 		return null;
 	}
 
-	public boolean isGoal(SearchNode<ActionT,StateT> testNode){
-		if(gtest.isGoal(testNode.getActionStatePair().getState())){
+	/**
+	 * Helper function to more neatly check whether a state is the goal or not
+	 * 
+	 * @param testNode
+	 *            The node being checked to see whether its state matches the
+	 *            goal
+	 * @return Whether or not the state of the node being tested is the goal.,
+	 */
+	public boolean isGoal(SearchNode<ActionT, StateT> testNode) {
+		if (gtest.isGoal(testNode.getActionStatePair().getState())) {
 			return true;
-		}
-			else return false;
+		} else
+			return false;
 	}
-	
-	public List<ActionT> makeMoveList(SearchNode<ActionT,StateT> finishedNode){
+
+	/**
+	 * Helper to generate the list of actions that get to the goal from the
+	 * initial state once a state that matches the goal has been found. Works by
+	 * examining the parent nodes until one that is null is found which is the
+	 * initial node. Actions are started at the front of the list otherwise it
+	 * would be backward.
+	 * 
+	 * @param finishedNode
+	 *            The search node which has been found to contain the goal state
+	 * @return The list of actions that are required to get to the goal state
+	 *         from the initial state
+	 */
+	public List<ActionT> makeMoveList(SearchNode<ActionT, StateT> finishedNode) {
 		System.out.println("Found a solution! The path is:");
 
 		List<ActionT> resultList = new ArrayList<ActionT>();
 
 		while (finishedNode.getParent() != null) {
-			resultList
-					.add(0, finishedNode.getActionStatePair().getAction());
+			resultList.add(0, finishedNode.getActionStatePair().getAction());
 			finishedNode = finishedNode.getParent();
 		}
 
 		System.out.println(resultList);
 		return resultList;
 	}
-	
 
 	/**
 	 * @param args

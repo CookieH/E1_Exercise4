@@ -12,7 +12,7 @@ import java.util.RandomAccess;
 /**
  *
  * Code copied from Java 1.6 source and repurposed for use in leJOS.
- *
+ * Unchanged
  * @author nah
  */
 public class Collections {

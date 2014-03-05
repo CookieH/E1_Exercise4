@@ -3,20 +3,15 @@ package searchStructures;
 import java.util.ArrayList;
 import java.util.List;
 
-import rp.util.SimpleSet;
 import rp13.search.interfaces.Agenda;
 import rp13.search.interfaces.GoalTest;
 import rp13.search.interfaces.Heuristic;
 import rp13.search.interfaces.SuccessorFunction;
-import rp13.search.problem.puzzle.EightPuzzle;
-import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
-import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
-import rp13.search.problem.puzzle.IntPair;
-import rp13.search.problem.puzzle.WordPuzzle;
-import rp13.search.problem.puzzle.WordPuzzleSuccessorFunction;
 import rp13.search.util.ActionStatePair;
 import rp13.search.util.EqualityGoalTest;
-import rp13.search.util.SearchNode;
+import wordPuzzle.IntPair;
+import wordPuzzle.WordPuzzle;
+import wordPuzzle.WordPuzzleSuccessorFunction;
 
 /**
  * A seperate Framework (a copy of the original) to store the word puzzle implementation in

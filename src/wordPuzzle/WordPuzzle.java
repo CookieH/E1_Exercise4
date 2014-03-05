@@ -1,4 +1,4 @@
-package rp13.search.problem.puzzle;
+package wordPuzzle;
 
 import java.util.ArrayList;
 import java.util.Random;

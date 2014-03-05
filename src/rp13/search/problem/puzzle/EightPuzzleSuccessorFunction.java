@@ -8,6 +8,7 @@ import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
 import rp13.search.util.ActionStatePair;
 import searchStructures.ComparableSearchNode;
 import searchStructures.SearchNode;
+import wordPuzzle.WordPuzzle;
 
 /**
  * An example eight-puzzle successor function.

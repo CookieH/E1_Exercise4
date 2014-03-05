@@ -5,10 +5,10 @@ package rp13.search.interfaces;
 
 import java.util.List;
 
-import rp13.search.problem.puzzle.WordPuzzle;
+import wordPuzzle.WordPuzzle;
 import rp13.search.util.ActionStatePair;
-import rp13.search.util.ComparableSearchNode;
-import rp13.search.util.SearchNode;
+import searchStructures.ComparableSearchNode;
+import searchStructures.SearchNode;
 
 /**
  * 

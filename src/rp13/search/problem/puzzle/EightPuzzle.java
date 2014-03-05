@@ -21,7 +21,7 @@ import rp13.search.interfaces.Heuristic;
 public class EightPuzzle implements Heuristic {
 
 	private int misplaced = 0;
-	private final static int  costToMove = 0; 
+	private final static int  costToMove = 1; 
 
 	
 	/**

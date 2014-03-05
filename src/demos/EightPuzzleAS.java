@@ -57,7 +57,7 @@ public class EightPuzzleAS {
 	
 	
 		EightPuzzleAS demo = new EightPuzzleAS(frame);
-		
+		demo.framework.searchLoop();
 
 		
 		

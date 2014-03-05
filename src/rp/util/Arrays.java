@@ -1,5 +1,10 @@
 package rp.util;
 
+/**
+ * Unchanged
+ * @author nick
+ *
+ */
 public class Arrays {
 
   /**

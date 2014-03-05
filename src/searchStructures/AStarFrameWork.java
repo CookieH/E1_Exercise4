@@ -27,7 +27,8 @@ import rp13.search.util.EqualityGoalTest;
  *            state to another state
  * @param <StateT>
  *            The way that the nodes are represented at a given point. Their
- *            state.
+ *            state. State must be able to generate a Heuristic value as given
+ *            by the Heuristic interface
  */
 public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 
@@ -39,11 +40,16 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 	private final ComparableSearchNode<ActionT, StateT> initial;
 
 	/**
-	 * Constructor creates a new instance of 
+	 * Constructor creates a new instance of the framework using the parameters
+	 * 
 	 * @param agenda
+	 *            The agenda that is being used, must be a sorted one for A*
 	 * @param gtest
+	 *            The function that checks whether a state is the goal or not
 	 * @param sfunc
+	 *            Functions that returns the successors given a state
 	 * @param initial
+	 *            The initial state of the problem
 	 */
 	public AStarFrameWork(
 			SortedAgenda<ComparableSearchNode<ActionT, StateT>> agenda,
@@ -56,6 +62,13 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 		this.initial = initial;
 	}
 
+	/**
+	 * Main search loop that carries out the search according to the A*
+	 * algorithm
+	 * 
+	 * @return A list of actions of the type declared in the type declaration
+	 *         for the class that reach the goal state from the original state.
+	 */
 	public List<ActionT> searchLoop() {
 		System.out.println(initial.getActionStatePair().getState());
 		if (isGoal(initial)) {
@@ -74,6 +87,13 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 		return null;
 	}
 
+	/**
+	 * Helper method that adds successors to the agenda. Get all the successors
+	 * for a given search state and then compare their state against the closed
+	 * list to see if they go onto the agenda
+	 * 
+	 * @param parentNode
+	 */
 	private void addSuccessorsToAgenda(
 			ComparableSearchNode<ActionT, StateT> parentNode) {
 		sfunc.getComparableSuccessors(parentNode, successors);
@@ -100,6 +120,16 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 		agenda.sort();
 	}
 
+	/**
+	 * Helper function that generates the list of moves required to get to a
+	 * ndoe by going up through the parent state until the initial one (has
+	 * parent of null) is found.
+	 * 
+	 * @param finishedNode
+	 *            The node found in the search that is the goal
+	 * @return A list of actions that can be taken from the initial state to
+	 *         reach the goal state
+	 */
 	private List<ActionT> makeMoveList(SearchNode<ActionT, StateT> finishedNode) {
 		System.out.println("Found a solution! The path is:");
 
@@ -114,6 +144,13 @@ public class AStarFrameWork<ActionT, StateT extends Heuristic> {
 		return resultList;
 	}
 
+	/**
+	 * Method to call the goal test in the main loop more neatly
+	 * 
+	 * @param testNode
+	 *            Node being tested to see if it is the goal
+	 * @return Whether or not the node is the goal
+	 */
 	public boolean isGoal(ComparableSearchNode<ActionT, StateT> testNode) {
 		if (gtest.isGoal(testNode.getActionStatePair().getState())) {
 			return true;

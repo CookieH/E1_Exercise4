@@ -58,6 +58,17 @@ public class EightPuzzleSuccessorFunction implements
 
 	@Override
 	public void getComparableSuccessors(
+			ComparableSearchNode<PuzzleMove, EightPuzzle> cause,
+			List<ComparableSearchNode<PuzzleMove, EightPuzzle>> _successors,
+			WordPuzzle goal) {
+		// Added but left blank as this will not be called with these params, had to be added to
+		//the interface for word puzzle a star
+		
+	}
+
+
+	@Override
+	public void getComparableSuccessors(
 			ComparableSearchNode<PuzzleMove, EightPuzzle> _cause,
 			List<ComparableSearchNode<PuzzleMove, EightPuzzle>> _successors) {
 

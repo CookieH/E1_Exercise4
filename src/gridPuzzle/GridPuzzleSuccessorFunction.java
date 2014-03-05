@@ -35,6 +35,16 @@ public class GridPuzzleSuccessorFunction implements
 
 	@Override
 	public void getComparableSuccessors(
+			ComparableSearchNode<GridMove, GridLocation> cause,
+			List<ComparableSearchNode<GridMove, GridLocation>> _successors,
+			WordPuzzle goal) {
+		//added to match the interface, will not be called as the params will not match this function
+		//had to be added to interface for the word puzzle a star to use
+		
+	}
+
+	@Override
+	public void getComparableSuccessors(
 			ComparableSearchNode<GridMove, GridLocation> _cause,
 			List<ComparableSearchNode<GridMove, GridLocation>> _successors) {
 		assert (_successors != null);

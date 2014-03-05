@@ -5,9 +5,10 @@ package rp13.search.interfaces;
 
 import java.util.List;
 
+import rp13.search.problem.puzzle.WordPuzzle;
 import rp13.search.util.ActionStatePair;
-import searchStructures.ComparableSearchNode;
-import searchStructures.SearchNode;
+import rp13.search.util.ComparableSearchNode;
+import rp13.search.util.SearchNode;
 
 /**
  * 
@@ -32,4 +33,7 @@ public interface SuccessorFunction<ActionT, StateT extends Heuristic> {
 	
 	public void getComparableSuccessors(ComparableSearchNode<ActionT,StateT> cause, 
 			List<ComparableSearchNode<ActionT, StateT>> _successors);
+	
+	public void getComparableSuccessors(ComparableSearchNode<ActionT,StateT> cause, 
+			List<ComparableSearchNode<ActionT, StateT>> _successors, WordPuzzle goal);
 }

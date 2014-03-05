@@ -41,6 +41,9 @@ public boolean isEmpty() {
 }
 
 @Override
+/**
+ * Returns true if the agenda contains an item
+ */
 public boolean doesContain(ComparableSearchNode<ActionT, StateT> _item) {
 	return inner.contains(_item);
 }
@@ -52,6 +55,9 @@ public Iterator<ComparableSearchNode<ActionT, StateT>> iterator() {
 }
 
 @Override
+/**
+ * Call the lejos collections sort method on the inner array.
+ */
 public void sort() {
 	Collections.sort(inner);
 }

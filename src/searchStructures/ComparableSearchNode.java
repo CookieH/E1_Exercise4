@@ -6,7 +6,6 @@ import rp13.search.util.ActionStatePair;
 public class ComparableSearchNode<ActionT,StateT extends Heuristic> extends SearchNode<ActionT,StateT> implements Comparable<ComparableSearchNode<ActionT,StateT >> {
 
 	private int costToNode;
-	private int aStarValue;
 	private ComparableSearchNode<ActionT,StateT> parent;
 	
 	public ComparableSearchNode(ActionStatePair<ActionT,StateT> pair,ComparableSearchNode<ActionT,StateT> parent, int cost){
@@ -23,6 +22,10 @@ public class ComparableSearchNode<ActionT,StateT extends Heuristic> extends Sear
 	}
 
 
+	/**
+	 * Method that works out the AStar value and returns it to the 
+	 * @return
+	 */
 	public int getAStar() {
 		return getActionStatePair().getState().getHeuristicValue() + getCostToNode();
 	}

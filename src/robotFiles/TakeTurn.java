@@ -154,6 +154,10 @@ public class TakeTurn implements Behavior {
 		}
 	}
 
+	/**
+	 * Returns the list of directions that the robot currently has!
+	 * @return The list of instruction that the robot is following.
+	 */
 	public ArrayList<Integer> getDirections() {
 		return this.directions;
 	}

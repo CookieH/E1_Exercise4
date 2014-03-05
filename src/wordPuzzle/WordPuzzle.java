@@ -1,39 +1,64 @@
-package wordPuzzle;
-
-import gridPuzzle.IntPair;
+package rp13.search.problem.puzzle;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import rp13.search.interfaces.Heuristic;
 
 /**
  * The class containing the word puzzle itself and all of the methods to affect the puzzle
  * @author hxc326
  *
  */
-public class WordPuzzle {
+public class WordPuzzle implements Heuristic{
 	
 	protected String str;
+	private WordPuzzle goal;
 	private static Random generator;
-	
+	private int costToMove;
 	private ArrayList<IntPair> moves;
 	
 	/**
 	 * The constructor initialises the string and random generator and calls the method
 	 * to randomly jumble the string
 	 * @param str the word for the game
+	 * @param goal the goal word so the heuristic can check the current word against th goal
 	 */
-	public WordPuzzle(String str)
+	public WordPuzzle(String str, WordPuzzle goal)
 	{
 			this.str = str;
+			this.goal = goal;
+			costToMove = 0;
 			moves = new ArrayList<IntPair>();
 			createMoves();
 	}
 	
+	/**
+	 * a separate constructor for when a WordPuzzle is made without sending the goal, i.e.
+	 * the first instantiation (the goal itself)
+	 * @param str the string to be stored
+	 */
+	public WordPuzzle(String str)
+	{
+			this.str = str;
+			costToMove = 0;
+			moves = new ArrayList<IntPair>();
+			createMoves();
+	}
+	
+	/**
+	 * returns the possible moves
+	 * @return the array list of possible moves
+	 */
 	public ArrayList<IntPair> getMoves()
 	{
 		return moves;
 	}
 	
+	/**
+	 * creates all of the next possible moves for each state and stores them in 
+	 * a private global array list
+	 */
 	public void createMoves() 
 	{
 		for(int i = 0; i<str.length(); i++)
@@ -41,7 +66,8 @@ public class WordPuzzle {
 			for(int j =0; j<str.length(); j++)
 			{
 				if(j>i && isPossibleMove(new IntPair(i,j)))
-				{
+				{//only adds if j is more than i meaning duplicate pairs are not added,
+				//reduces the workload of the agenda
 					moves.add(new IntPair(i,j));
 				}
 			}
@@ -50,8 +76,8 @@ public class WordPuzzle {
 	}
 
 	/**
-	 * returns the goal string
-	 * @return the goal string
+	 * returns the current string
+	 * @return the current string
 	 */
 	public String getString()
 	{
@@ -59,7 +85,7 @@ public class WordPuzzle {
 	}
 	
 	/**
-	 * jumbles the string
+	 * jumbles the string and also stores it as the current string
 	 * @return returns the jumbled string
 	 */
 	public String jumbleString(String it)
@@ -70,7 +96,8 @@ public class WordPuzzle {
 	
 	/**
 	 * randomly jumbles the string for the initial jumbled string
-	 * @param puzzleStr the goal string
+	 * acts as static so it can be put straight into a new constructor
+	 * @param puzzleStr the string to be jumbled
 	 * @return the jumbled string
 	 */
 	public static String jumble(String puzzleStr)
@@ -101,6 +128,9 @@ public class WordPuzzle {
 		return "Current: " + str;
 	}
 	
+	/**
+	 * an equality comparison for the string state of two word puzzle states
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		WordPuzzle that = (WordPuzzle) obj;
@@ -110,7 +140,7 @@ public class WordPuzzle {
 	/**
 	 * makes the move on the jumbled string
 	 * @param Action the pair of indexes to swap
-	 * @return the jumbled string
+	 * @return the string after the swap
 	 */
 	public void makeMove(IntPair Action)
 	{
@@ -145,6 +175,34 @@ public class WordPuzzle {
 	public boolean isPossibleMove(IntPair Action)
 	{
 		return Action.getX() < str.length() && Action.getY() < str.length();
+	}
+
+	/**
+	 * returns the cost function for the a star implementation
+	 */
+	@Override
+	public int getCostToMove() {
+		// TODO Auto-generated method stub
+		return costToMove;
+	}
+
+	/**
+	 * returns the heuristic value for the current state, uses hamming distance
+	 * (amount of characters in two same lenght strings that dont match)
+	 */
+	@Override
+	public int getHeuristicValue() {
+		String goalStr = goal.getString();
+		assert goalStr.length() == str.length();//ensure the strings are both of the same length
+		int misplaced = 0;
+		for(int i = 0; i< str.length(); i++)//checks every char pair 
+		{
+			if(str.charAt(i) != goalStr.charAt(i))
+				{//if they dont match the misplaced counter is incremented
+					misplaced++;
+				}
+		}
+		return misplaced;
 	}
 	
 }

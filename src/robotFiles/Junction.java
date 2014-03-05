@@ -1,6 +1,7 @@
 package robotFiles;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lejos.nxt.Button;
@@ -49,12 +50,16 @@ public class Junction {
 		//the arbitrator controls which behaviour to do
 	}
 	
-	public void giveDirections(List<Integer> directions){
+	public void giveDirections(ArrayList<Integer> directions){
 		
 		for (Integer instruction: directions) {
 			turner.addDirections(instruction);
 		}
 		
+	}
+	
+	public TakeTurn getTurner(){
+		return this.turner;
 	}
 	
 	public void setup(){

@@ -13,7 +13,6 @@ import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
 import rp13.search.util.ActionStatePair;
 import rp13.search.util.EqualityGoalTest;
-import rp13.search.util.SearchNode;
 
 public class Framework<ActionT, StateT extends Heuristic> {
 

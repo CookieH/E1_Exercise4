@@ -3,7 +3,6 @@ import java.util.Iterator;
 
 import rp.util.SimpleSet;
 import rp13.search.interfaces.Agenda;
-import rp13.search.util.SearchNode;
 //TODO fix this class!!!
 /**
  * Uses stack for agenda, implements depth first

@@ -1,4 +1,4 @@
-package rp13.search.problem.puzzle;
+package gridPuzzle;
 
 import java.util.ArrayList;
 
@@ -12,18 +12,30 @@ import rp13.search.interfaces.Heuristic;
  */
 public class GridLocation implements Heuristic {
 
-	private final static int UPPER_X_BOUND = 15;
-	private final static int UPPER_Y_BOUND = 15;
+	private final static int UPPER_X_BOUND = 9;
+	private final static int UPPER_Y_BOUND = 6;
 	private final static int LOWER_Y_BOUND = 0;
 	private final static int LOWER_X_BOUND = 0;
 	private  Coordinate location;
-	private final static Coordinate GOAL = new Coordinate(10, 10);
+	private final static Coordinate GOAL = new Coordinate(9, 6);
 	private static ArrayList<Edge> BLOCKED = new ArrayList<Edge>();
 
 	// ////////BLOCKED EDGES///////////////////////
-	private static Edge a = new Edge(new Coordinate(1, 1), new Coordinate(1, 2));
-	private static Edge b = new Edge(new Coordinate(1,1),new Coordinate(2,1));
-	private static Edge c = new Edge(new Coordinate(1,1),new Coordinate(0,1));
+	private static Edge a = new Edge(new Coordinate(0, 1), new Coordinate(1, 1));
+	private static Edge b = new Edge(new Coordinate(0,1),new Coordinate(0,2));
+	private static Edge c = new Edge(new Coordinate(1,0),new Coordinate(2,0));
+	private static Edge d = new Edge(new Coordinate(5,0),new Coordinate(6,0));
+	private static Edge e = new Edge(new Coordinate(4,1),new Coordinate(5,1));
+	private static Edge f = new Edge(new Coordinate(4,2),new Coordinate(5,2));
+	private static Edge g = new Edge(new Coordinate(5,2),new Coordinate(5,3));
+	private static Edge h = new Edge(new Coordinate(2,2),new Coordinate(2,3));
+	private static Edge i = new Edge(new Coordinate(2,3),new Coordinate(3,3));
+	private static Edge j = new Edge(new Coordinate(1,5),new Coordinate(2,5));
+	private static Edge k = new Edge(new Coordinate(3,6),new Coordinate(4,6));
+	private static Edge l = new Edge(new Coordinate(5,5),new Coordinate(5,6));
+	private static Edge m = new Edge(new Coordinate(4,4),new Coordinate(5,4));
+	private static Edge n = new Edge(new Coordinate(6,4),new Coordinate(7,4));
+	private static Edge o = new Edge(new Coordinate(6,5),new Coordinate(7,5));
 	
 
 	public enum GridMove {
@@ -58,6 +70,18 @@ public class GridLocation implements Heuristic {
 		BLOCKED.add(a);
 		BLOCKED.add(b);
 		BLOCKED.add(c);
+		BLOCKED.add(d);
+		BLOCKED.add(e);
+		BLOCKED.add(f);
+		BLOCKED.add(g);
+		BLOCKED.add(h);
+		BLOCKED.add(i);
+		BLOCKED.add(j);
+		BLOCKED.add(k);
+		BLOCKED.add(l);
+		BLOCKED.add(m);
+		BLOCKED.add(n);
+		BLOCKED.add(o);
 	}
 
 	public static Coordinate getGoal() {

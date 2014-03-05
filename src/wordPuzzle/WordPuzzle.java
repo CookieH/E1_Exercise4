@@ -1,4 +1,6 @@
-package rp13.search.problem.puzzle;
+package wordPuzzle;
+
+import gridPuzzle.IntPair;
 
 import java.util.ArrayList;
 import java.util.Random;

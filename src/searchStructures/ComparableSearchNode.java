@@ -1,6 +1,7 @@
-package rp13.search.util;
+package searchStructures;
 
 import rp13.search.interfaces.Heuristic;
+import rp13.search.util.ActionStatePair;
 
 public class ComparableSearchNode<ActionT,StateT extends Heuristic> extends SearchNode<ActionT,StateT> implements Comparable<ComparableSearchNode<ActionT,StateT >> {
 

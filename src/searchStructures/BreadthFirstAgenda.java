@@ -6,7 +6,6 @@ import rp13.search.interfaces.Agenda;
 import rp13.search.problem.puzzle.EightPuzzle;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
 import rp13.search.util.ActionStatePair;
-import rp13.search.util.SearchNode;
 
 
 public class BreadthFirstAgenda<ActionT,StateT>

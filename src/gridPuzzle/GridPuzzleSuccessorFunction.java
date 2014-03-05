@@ -1,13 +1,14 @@
-package rp13.search.problem.puzzle;
+package gridPuzzle;
+
+import gridPuzzle.GridLocation.GridMove;
 
 import java.util.List;
 
 import rp13.search.interfaces.SuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
-import rp13.search.problem.puzzle.GridLocation.GridMove;
 import rp13.search.util.ActionStatePair;
-import rp13.search.util.ComparableSearchNode;
-import rp13.search.util.SearchNode;
+import searchStructures.ComparableSearchNode;
+import searchStructures.SearchNode;
 
 public class GridPuzzleSuccessorFunction implements
 		SuccessorFunction<GridLocation.GridMove, GridLocation> {
